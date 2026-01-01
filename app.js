@@ -38,9 +38,18 @@ form.addEventListener("submit", async (e)=>{
       <p>دما: ${data.main.temp}°</p>
       <p>رطوبت: ${data.main.humidity}%</p>
     `;
-    }catch(err){
+    localStorage.setItem("lastcity",city);
+
+    }
+    catch(err){
     weatherBox.textContent="خطا! دوباره تلاش کن";
     }
 
     input.value="";
 });
+const savedcity = localStorage.getItem("lastcity");
+
+if (savedcity) {
+  input.value = savedcity;
+  form.dispatchEvent(new Event("submit"));
+}

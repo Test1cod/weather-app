@@ -22,9 +22,13 @@ form.addEventListener("submit", async (e)=>{
         );
     
 
-    if (!res.ok){
-        weatherBox.textContent="شهر پیدا نشد 😥";
-        return;
+    if (!res.ok) {
+    if (res.status === 404) {
+      weatherBox.textContent = "شهر پیدا نشد 😥";
+    } else {
+      weatherBox.textContent = "مشکلی پیش اومده — دوباره امتحان کن";
+    }
+    return;
     }
 
     const data=await res.json();
@@ -35,14 +39,14 @@ form.addEventListener("submit", async (e)=>{
       <h2>${data.name}</h2>
       <img src="https://openweathermap.org/img/wn/${icon}@2x.png" />
       <p>${data.weather[0].description}</p>
-      <p>دما: ${data.main.temp}°</p>
-      <p>رطوبت: ${data.main.humidity}%</p>
+      <p>دما: °${data.main.temp}</p>
+      <p>رطوبت: %${data.main.humidity}</p>
     `;
     localStorage.setItem("lastcity",city);
 
     }
     catch(err){
-    weatherBox.textContent="خطا! دوباره تلاش کن";
+        weatherBox.textContent = "❌ اتصال اینترنت بررسی شود";
     }
 
     input.value="";

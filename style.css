@@ -1,0 +1,37 @@
+html{
+    font-size: 62.5%;
+}
+
+body {
+  background: #e0f2fe;
+  font-family: sans-serif;
+}
+
+.container {
+  max-width: 450px;
+  margin: 4rem auto;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  gap: 1rem;
+}
+
+input {
+  flex: 1;
+  padding: .8rem;
+}
+
+#weather {
+  margin-top: 2rem;
+  font-size: 1.6rem;
+}
+.loading {
+  font-size: 1.4rem;
+  opacity: .7;
+}
+

@@ -35,3 +35,14 @@ input {
   opacity: .7;
 }
 
+.cold {
+  background: linear-gradient(#bae6fd, #7dd3fc);
+}
+
+.warm {
+  background: linear-gradient(#fed7aa, #fb923c);
+}
+
+.normal {
+  background: linear-gradient(#e5e7eb, #f4f4f5);
+}

@@ -33,6 +33,17 @@ form.addEventListener("submit", async (e)=>{
 
     const data=await res.json();
 
+    const temp=data.main.temp;
+    document.body.classList.remove("warm","cold","normal");
+    
+    if (temp <= 10) {
+    document.body.classList.add("cold");
+    } else if (temp >= 25) {
+    document.body.classList.add("warm");
+    } else {
+    document.body.classList.add("normal");
+    }
+
     const icon=data.weather[0].icon;
 
     weatherBox.innerHTML = `

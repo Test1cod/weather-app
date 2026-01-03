@@ -33,6 +33,20 @@ form.addEventListener("submit", async (e)=>{
 
     const data=await res.json();
 
+    const timezoneOffset=data.timezone*1000;
+    const utc = Date.now() + new Date().getTimezoneOffset() * 60000;
+    const localTime = new Date(utc + timezoneOffset);
+
+    const options={
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit"
+    };
+    const formattedTime = localTime.toLocaleString("fa-IR", options);
+
     const temp=data.main.temp;
     document.body.classList.remove("warm","cold","normal");
     
@@ -50,6 +64,7 @@ form.addEventListener("submit", async (e)=>{
 
     weatherBox.innerHTML = `
       <h2>${data.name},${country}</h2>
+      <p class="time">${formattedTime}</p>
       <img src="https://openweathermap.org/img/wn/${icon}@2x.png" />
       <p>${data.weather[0].description}</p>
       <p>دما: °${data.main.temp}</p>
@@ -64,6 +79,7 @@ form.addEventListener("submit", async (e)=>{
 
     input.value="";
 });
+
 const savedcity = localStorage.getItem("lastcity");
 
 if (savedcity) {

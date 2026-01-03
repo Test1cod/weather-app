@@ -44,10 +44,12 @@ form.addEventListener("submit", async (e)=>{
     document.body.classList.add("normal");
     }
 
+    const country=data.sys.country;
+
     const icon=data.weather[0].icon;
 
     weatherBox.innerHTML = `
-      <h2>${data.name}</h2>
+      <h2>${data.name},${country}</h2>
       <img src="https://openweathermap.org/img/wn/${icon}@2x.png" />
       <p>${data.weather[0].description}</p>
       <p>دما: °${data.main.temp}</p>

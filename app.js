@@ -68,7 +68,9 @@ form.addEventListener("submit", async (e)=>{
       <img src="https://openweathermap.org/img/wn/${icon}@2x.png" />
       <p>${data.weather[0].description}</p>
       <p>دما: °${data.main.temp}</p>
+      <p>احساس دما: °${data.main.feels_like}</p>
       <p>رطوبت: %${data.main.humidity}</p>
+      <p>m/sسرعت باد: ${data.wind.speed}</p>
     `;
     localStorage.setItem("lastcity",city);
 

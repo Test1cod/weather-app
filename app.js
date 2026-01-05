@@ -14,7 +14,14 @@ form.addEventListener("submit", async (e)=>{
             return
         };
 
-    weatherBox.innerHTML=`<p class="loading">در حال دریافت اطلاعات...</p>`;
+    weatherBox.innerHTML = `
+    <div class="loading">
+    <div class="spinner"></div>
+    <span>در حال دریافت اطلاعات...</span>
+    </div>
+    `;
+    
+
 
     try{
         const res=await fetch(

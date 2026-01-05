@@ -2,7 +2,7 @@ const form=document.querySelector("#weather-form");
 const input=document.querySelector("#city-input");
 const weatherBox=document.querySelector("#weather");
 
-const API_KEY = "006453a0bc0be4d59dc1c590056a7559";
+const API_KEY = "?";
 
 form.addEventListener("submit", async (e)=>{
     e.preventDefault();

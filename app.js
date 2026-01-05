@@ -20,7 +20,7 @@ form.addEventListener("submit", async (e)=>{
     <span>در حال دریافت اطلاعات...</span>
     </div>
     `;
-    
+
 
 
     try{
@@ -87,6 +87,8 @@ form.addEventListener("submit", async (e)=>{
     }
 
     input.value="";
+    fetchForecast(city);
+
 });
 
 const savedcity = localStorage.getItem("lastcity");
@@ -94,4 +96,54 @@ const savedcity = localStorage.getItem("lastcity");
 if (savedcity) {
   input.value = savedcity;
   form.dispatchEvent(new Event("submit"));
+}
+
+async function fetchForecast(city) {
+  const forecastBox = document.querySelector("#forecast");
+  forecastBox.innerHTML = "<p>در حال دریافت پیش‌بینی...</p>";
+
+  try {
+    const res = await fetch(
+      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric&lang=fa`
+    );
+
+    if (!res.ok) {
+      forecastBox.textContent = "پیش‌بینی در دسترس نیست";
+      return;
+    }
+
+    const data = await res.json();
+
+    // انتخاب ۱ دیتا از هر روز (مثلاً حوالی 12 ظهر)
+    const daily = [];
+
+    data.list.forEach(item => {
+      if (item.dt_txt.includes("12:00:00")) {
+        daily.push(item);
+      }
+    });
+
+    forecastBox.innerHTML = `
+      <h3>پیش‌بینی ۵ روز آینده</h3>
+      <div class="forecast-grid">
+        ${daily
+          .map(day => {
+            const date = new Date(day.dt_txt);
+            const icon = day.weather[0].icon;
+
+            return `
+              <div class="card">
+                <p>${date.toLocaleDateString("fa-IR")}</p>
+                <img src="https://openweathermap.org/img/wn/${icon}.png" />
+                <p>${day.weather[0].description}</p>
+                <p>${Math.round(day.main.temp)}°</p>
+              </div>
+            `;
+          })
+          .join("")}
+      </div>
+    `;
+  } catch {
+    forecastBox.textContent = "❌ خطا در دریافت پیش‌بینی";
+  }
 }

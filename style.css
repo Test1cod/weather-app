@@ -68,3 +68,20 @@ input {
   to { transform: rotate(360deg); }
 }
 
+#forecast {
+  margin-top: 2rem;
+}
+
+.forecast-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background: #f4f4f4;
+  padding: .8rem;
+  border-radius: 10px;
+}
+
+

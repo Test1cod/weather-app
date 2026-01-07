@@ -59,3 +59,5 @@ Just open index.html in your browser.
 -ذخیره تاریخچه جستجو
 
 -استفاده از موقعیت مکانی کاربر
+
+Check the live demo here: https://test1cod.github.io/weather-app/
